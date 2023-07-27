@@ -1,0 +1,83 @@
+library(pastclim)
+library(pam)
+bioclim_20000 <- region_series(
+  time_bp = list(min = -20000, max = -20000), 
+  bio_variables = c("bio01", "bio04", "bio05", "bio06", "bio07",
+                    "bio08", "bio09", "bio10", "bio11", "bio12",
+                    "bio13", "bio14", "bio15", "bio16", "bio17",
+                    "bio18", "bio19")   ,
+  dataset = "Beyer2020")
+
+mapNames <- names(bioclim_20000)
+bioclim_20000 <- terra::rast(bioclim_20000) 
+names(bioclim_20000) <- mapNames
+bioclim_20000 <- wrap(bioclim_20000)
+readr::write_rds(bioclim_20000, "data-raw/bioclim_20000.rds")
+library(terra)
+library(tidyverse)
+r <- rast(climate_region)
+r_df <- terra::as.data.frame(r, xy = TRUE) %>% 
+  as_tibble()
+r_pc <- r_df %>% select(-c(1, 2)) %>% stats::prcomp(center = TRUE, scale. = TRUE)
+r_df_pc <- r_pc$x %>% as.data.frame() %>% 
+  dplyr::select(1, 2) %>% 
+  tibble::as_tibble()
+
+install.packages("pastclim")
+pastclim::download_dataset()
+library(pastclim)
+vignette("pastclim_overview", package = "pastclim")
+get_available_datasets()
+?("Beyer2020")
+download_dataset(dataset = "custom")
+
+climate_region <- region_series(
+  time_bp = list(min = 0, max = 0), 
+  bio_variables = c("bio01", "bio04", "bio05", "bio06", "bio07",
+                    "bio08", "bio09", "bio10", "bio11", "bio12",
+                    "bio13", "bio14", "bio15", "bio16", "bio17",
+                    "bio18", "bio19")   ,
+  dataset = "Beyer2020")
+
+library(terra)
+r <- rast(climate_region)
+r_df <- terra::as.data.frame(r, xy = TRUE) %>% 
+  as_tibble()
+r_pc <- r_df %>% select(-c(1, 2)) %>% stats::prcomp(center = TRUE, scale. = TRUE)
+r_df_pc <- r_pc$x %>% as.data.frame() %>% 
+  dplyr::select(1, 2) %>% 
+  tibble::as_tibble()
+
+range(r_df_pc$PC1)
+range(r_df_pc$PC2)
+
+range(r_df_pc$PC1)
+range(r_df_pc$PC2)
+
+
+climate_region_50000 <- region_series(
+  time_bp = list(min = -50000, max = -50000), 
+  bio_variables = c("bio01", "bio04", "bio05", "bio06", "bio07",
+                    "bio08", "bio09", "bio10", "bio11", "bio12",
+                    "bio13", "bio14", "bio15", "bio16", "bio17",
+                    "bio18", "bio19")   ,
+  dataset = "Beyer2020")
+
+library(terra)
+r <- rast(climate_region_50000)
+plot(r)
+r_df_2 <- terra::as.data.frame(r, xy = TRUE) %>% 
+  as_tibble()
+r_df_newdata <- r_df_2 %>% select(-c(1, 2))
+r_df_pca_newdata <- scale(r_df_newdata, r_pc$center, r_pc$scale) %*% r_pc$rotation 
+r_df_pca_newdata <- r_df_pca_newdata %>% 
+  as.data.frame() %>% 
+  dplyr::select(1, 2) %>% 
+  tibble::as_tibble()
+p1 <- r_df_pc %>% ggplot() + geom_point(aes(PC1, PC2), size = 0.1)
+
+p2 <- r_df_pca_newdata %>% ggplot() + geom_point(aes(PC1, PC2), size = 0.1)
+cowplot::plot_grid(p1, p2)
+r_df_pc %>% slice(1:10) %>% 
+  gather(value)
+r_df_pca_newdata %>% slice(1:10)
