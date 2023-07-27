@@ -1,6 +1,6 @@
 Package: pam
 Type: Package
-Title: Generating presences absence matrix from shapefiles
+Title: Presences absence matrix from shapefiles
 Version: 0.1.0
 Author: Angel Robles
 Maintainer: Angel Robles <a.l.robles.fernandez@gmail.com>

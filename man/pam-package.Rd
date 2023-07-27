@@ -4,8 +4,8 @@
 \name{pam-package}
 \alias{pam}
 \alias{pam-package}
-\title{pam: What the Package Does (Title Case)}
+\title{pam: Generating presences absence matrix from shapefiles}
 \description{
-More about what it does (maybe more than one line) Use four spaces when indenting paragraphs within the Description.
+A simply R tool to get presences absences matrix from shapefiles.
 }
 \keyword{internal}
