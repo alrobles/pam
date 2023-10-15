@@ -1,9 +1,0 @@
-bibentry(
-  bibtype  = "misc",
-  title    = "pam: Presences absence matrix from shapefiles",
-  author   = "Angel Luis Robles Fernandez",
-  journal  = "Github repository",
-  year     = "2023",
-  doi      = "10.5281/zenodo.8189393",
-  note     = "https://github.com/alrobles/pam"
-)

@@ -4,7 +4,7 @@
 \name{pam-package}
 \alias{pam}
 \alias{pam-package}
-\title{pam: Generating presences absence matrix from shapefiles}
+\title{pam: Presences absence matrix from shapefiles}
 \description{
 A simply R tool to get presences absences matrix from shapefiles.
 }
