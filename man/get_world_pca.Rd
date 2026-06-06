@@ -2,8 +2,7 @@
 % Please edit documentation in R/get_world_pca.R
 \name{get_world_pca}
 \alias{get_world_pca}
-\title{Function to obtain the environmental space of the world projected
-to two dimensions through Principal Component Analysis}
+\title{Retrieve a WorldClim PCA Environmental Raster}
 \source{
 WorldClim 2.0 project: \url{https://www.worldclim.org/}
 }
@@ -11,12 +10,16 @@ WorldClim 2.0 project: \url{https://www.worldclim.org/}
 get_world_pca()
 }
 \value{
-A SpatRaster object with World PCA environmental space
+A \code{\link[terra]{SpatRaster}} object, or
+  \code{"Can't access data."} if the remote server is unreachable.
 }
 \description{
-Function to obtain the environmental space of the world projected
-to two dimensions through Principal Component Analysis
+Downloads a \code{\link[terra]{SpatRaster}} containing the first two
+principal components derived from WorldClim 2.0 bioclimatic variables
+at global extent.
 }
 \examples{
-get_world_pca()
+\donttest{
+ras <- get_world_pca()
+}
 }

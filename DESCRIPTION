@@ -1,25 +1,39 @@
 Package: pam
 Type: Package
-Title: Presences absence matrix from shapefiles
-Version: 0.1.0
-Author: Angel Robles
-Maintainer: Angel Robles <a.l.robles.fernandez@gmail.com>
-Description: A simply R tool to get presences absences matrix
-    from shapefiles.
+Title: Presence-Absence Matrix Construction from Species Range Maps
+Version: 0.2.0
+Authors@R:
+    person("Angel", "Robles",
+           email = "a.l.robles.fernandez@gmail.com",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-4559-1751"))
+Description: Constructs geographic presence-absence matrices (PAMs) from
+    species range polygons stored as 'terra' SpatVector objects.
+    Rasterizes vector geometries onto a user-defined grid and pivots the
+    result into a sites-by-species binary matrix suitable for biodiversity
+    analyses.  Includes convenience functions to retrieve example mammal
+    range data and WorldClim environmental layers projected to two
+    dimensions via Principal Component Analysis.
 License: GPL (>= 3)
 Encoding: UTF-8
-LazyData: true
-Depends: 
-    R (>= 2.10)
-RoxygenNote: 7.3.1
-Imports: 
+Depends:
+    R (>= 4.1.0)
+Imports:
+    checkmate,
     dplyr,
-    httr,
-    magrittr,
     readr,
-    stringr,
     terra,
     tibble,
     tidyr,
     utils
-URL: https://alrobles.github.io/pam/
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+URL: https://alrobles.github.io/pam/,
+    https://github.com/alrobles/PAM
+BugReports: https://github.com/alrobles/PAM/issues
+RoxygenNote: 7.3.1
+Config/roxygen2/version: 8.0.0

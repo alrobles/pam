@@ -2,21 +2,19 @@
 % Please edit documentation in R/url_exists.R
 \name{url_exists}
 \alias{url_exists}
-\title{Url Exists}
+\title{Check Whether a URL is Reachable}
 \usage{
-url_exists(x, quiet = FALSE, ...)
+url_exists(url, timeout = 10)
 }
 \arguments{
-\item{x}{A string with the url to check if exist}
+\item{url}{Character string. The URL to check.}
 
-\item{quiet}{A logic if quiets}
-
-\item{...}{Ellipsis}
+\item{timeout}{Numeric. Connection timeout in seconds. Default \code{10}.}
 }
 \value{
-A logic value if url exists
+\code{TRUE} if the URL responds, \code{FALSE} otherwise.
 }
 \description{
-Url Exists
+Check Whether a URL is Reachable
 }
 \keyword{internal}

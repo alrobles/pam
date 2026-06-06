@@ -2,23 +2,33 @@
 % Please edit documentation in R/get_geo_pam.R
 \name{get_geo_pam}
 \alias{get_geo_pam}
-\title{Title}
+\title{Build a Presence-Absence Matrix from Species Range Polygons}
 \usage{
 get_geo_pam(shp, res = 0.5, ...)
 }
 \arguments{
-\item{shp}{A terra vect object}
+\item{shp}{A \code{\link[terra]{SpatVector}} with a \code{sciname}
+attribute column identifying each species.}
 
-\item{res}{The resolution of the pam}
+\item{res}{Numeric.
+Grid cell size in the same units as the coordinate reference system
+of \code{shp} (typically decimal degrees). Default \code{0.5}.}
 
-\item{...}{ellipsis}
+\item{...}{Additional arguments passed to \code{\link[terra]{rasterize}}.}
 }
 \value{
-A data frame with sites by species
+A \code{\link[tibble]{tibble}} with columns \code{x}, \code{y}
+  (cell centroids) followed by one column per species containing
+  \code{1} (present) or \code{0} (absent).
 }
 \description{
-Title
+Rasterizes a set of species range polygons onto a regular grid and
+returns a sites-by-species presence-absence matrix (PAM) as a tibble.
 }
 \examples{
-get_geo_pam(get_rodentia_mexico())
+\donttest{
+shp <- get_rodentia_mexico()
+pam <- get_geo_pam(shp, res = 1)
+head(pam)
+}
 }
