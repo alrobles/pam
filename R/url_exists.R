@@ -1,44 +1,24 @@
-#' Url Exists
+#' Check Whether a URL is Reachable
 #'
-#' @param x A string with the url to check if exist
-#' @param quiet A logic if quiets
-#' @param ... Ellipsis
+#' @param url Character string. The URL to check.
+#' @param timeout Numeric. Connection timeout in seconds. Default \code{10}.
 #'
-#' @return A logic value if url exists
+#' @return \code{TRUE} if the URL responds, \code{FALSE} otherwise.
 #' @keywords internal
-url_exists <- function(x, quiet = FALSE, ...) {
+url_exists <- function(url, timeout = 10) {
+  checkmate::assert_string(url)
 
-  capture_error <- function(code, otherwise = NULL, quiet = TRUE) {
-    tryCatch(
-      list(result = code, error = NULL),
-      error = function(e) {
-        list(result = otherwise, error = e)
-      }
-    )
+  if (!grepl("^https?://", url)) {
+    url <- paste0("https://", url)
   }
 
-  safely <- function(.f, otherwise = NULL, quiet = TRUE) {
-    function(...) capture_error(.f(...), otherwise, quiet)
-  }
-
-  sHEAD <- safely(httr::HEAD)
-  sGET <- safely(httr::GET)
-
-  if (!stringr::str_detect(x, "http")) {
-    x <- paste0("https://", x)
-  }
-
-  res <- sHEAD(x, ...)
-
-  if (is.null(res$result)) {
-
-    res <- sGET(x, ...)
-
-    if (is.null(res$result)) {
-      return(FALSE)
-    }
-  }
-
-  return(TRUE)
-
+  tryCatch(
+    {
+      con <- url(url, open = "r")
+      on.exit(close(con), add = TRUE)
+      TRUE
+    },
+    error = function(e) FALSE,
+    warning = function(w) TRUE
+  )
 }

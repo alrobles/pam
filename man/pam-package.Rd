@@ -4,8 +4,26 @@
 \name{pam-package}
 \alias{pam}
 \alias{pam-package}
-\title{pam: Presences absence matrix from shapefiles}
+\title{pam: Presence-Absence Matrix Construction from Species Range Maps}
 \description{
-A simply R tool to get presences absences matrix from shapefiles.
+Constructs geographic presence-absence matrices (PAMs) from species range polygons stored as 'terra' SpatVector objects. Rasterizes vector geometries onto a user-defined grid and pivots the result into a sites-by-species binary matrix suitable for biodiversity analyses. Includes convenience functions to retrieve example mammal range data and WorldClim environmental layers projected to two dimensions via Principal Component Analysis.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://alrobles.github.io/pam/}
+  \item \url{https://github.com/alrobles/PAM}
+  \item Report bugs at \url{https://github.com/alrobles/PAM/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Angel Robles \email{a.l.robles.fernandez@gmail.com} (\href{https://orcid.org/0000-0002-4559-1751}{ORCID})
+
+Authors:
+\itemize{
+  \item Angel Robles \email{a.l.robles.fernandez@gmail.com} (\href{https://orcid.org/0000-0002-4559-1751}{ORCID})
+}
+
 }
 \keyword{internal}
